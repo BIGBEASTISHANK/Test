@@ -173,17 +173,17 @@ fn DecryptWithPGP(
     let secret_key: SignedSecretKey = if key_bytes.starts_with(b"-----") {
 
         // ASCII-armored key
-        let key_str = std::str::from_utf8(&key_bytes)?;
-        let (key, _) = SignedSecretKey::from_string(key_str)?;
+        let (key, _) = SignedSecretKey::from_armor_single(
+            Cursor::new(key_bytes)
+        )?;
         key
 
     } else {
 
         // Binary key
-        let (key, _) = SignedSecretKey::from_bytes(
+        SignedSecretKey::from_bytes(
             Cursor::new(key_bytes)
-        )?;
-        key
+        )?
 
     };
 
@@ -191,7 +191,7 @@ fn DecryptWithPGP(
     // PARSE PGP MESSAGE
     // ==========================================
 
-    let (msg, _) = Message::from_bytes(
+    let msg = Message::from_bytes(
         Cursor::new(encrypted_data)
     )?;
 

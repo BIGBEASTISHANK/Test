@@ -54,7 +54,7 @@ pub fn EncryptFile(
     let mut nonce_bytes =
         [0u8; 12];
 
-    rand::thread_rng()
+    rand::rng()
         .fill_bytes(
             &mut nonce_bytes
         );

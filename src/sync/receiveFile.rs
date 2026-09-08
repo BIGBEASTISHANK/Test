@@ -36,6 +36,7 @@ const HEADER_SIZE: usize = 19;
 // RECEIVE FILES
 // ==========================================
 
+#[allow(unreachable_code)]
 pub fn ReceiveFiles() -> Result<(), Box<dyn std::error::Error>> {
     println!("==========================================");
     println!("Waiting for server file transfer...");

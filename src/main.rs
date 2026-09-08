@@ -18,8 +18,14 @@ fn main() {
         rftmle::fileMonitor::FileMonitor().unwrap();
     });
 
+    std::thread::spawn(|| {
+        if let Err(error) = rftmle::sync::receiveFile::ReceiveFiles() {
+            eprintln!("Client receiver stopped: {}", error);
+        }
+    });
+
     // Preventing the exit of progra.
     loop {
-       thread::park();
+        thread::park();
     }
 }

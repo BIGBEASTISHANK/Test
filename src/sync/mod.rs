@@ -10,6 +10,8 @@ use pnet::packet::Packet;
 use pnet::util::MacAddr;
 
 pub mod aes256gcm;
+pub mod receiveFile;
+pub mod decryptFile;
 
 // ==========================================
 // CUSTOM ETHERNET PROTOCOL
